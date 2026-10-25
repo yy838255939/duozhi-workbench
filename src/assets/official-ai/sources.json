@@ -1,0 +1,123 @@
+[
+  {
+    "id": "claude",
+    "file": "claude.png",
+    "sourcePage": "https://claude.ai/",
+    "assetUrl": "https://assets.claude.com/95a868946ac8a31e5ff832e2899f294aa368b836.png",
+    "downloadedAt": "2026-10-13",
+    "bytes": 1198,
+    "dimensions": [32, 32],
+    "sha256": "4004381309500f25e49a1ae639912ce307ea81da74cc383954a1ac8b9d343fe6"
+  },
+  {
+    "id": "gemini",
+    "file": "gemini.png",
+    "sourcePage": "https://gemini.google.com/app",
+    "assetUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_4g_512_lt_f94943af3be039176192d.png",
+    "downloadedAt": "2026-10-13",
+    "bytes": 61823,
+    "dimensions": [512, 512],
+    "sha256": "5e7cfecaa53f4f65a313fe89b0f389548126544a78fad8489510c70ae641a4a1"
+  },
+  {
+    "id": "deepseek",
+    "file": "deepseek.svg",
+    "sourcePage": "https://chat.deepseek.com/",
+    "assetUrl": "https://fe-static.deepseek.com/chat/favicon.svg",
+    "downloadedAt": "2026-10-13",
+    "bytes": 3642,
+    "dimensions": "0 0 50 50",
+    "sha256": "90d7e400ca261d28dfb7982bfade335912b3a27a620faee9a787f8a52164fd43"
+  },
+  {
+    "id": "doubao",
+    "file": "doubao.png",
+    "sourcePage": "https://www.doubao.com/chat/",
+    "assetUrl": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/favicon/new-doubao/192x192.png",
+    "downloadedAt": "2026-10-13",
+    "bytes": 34367,
+    "dimensions": [192, 192],
+    "sha256": "dabb2abd94e3a6c11e7f1a42c9343839b6ef643c086751b71afbc68f615aec38"
+  },
+  {
+    "id": "qwen",
+    "file": "qwen.png",
+    "sourcePage": "https://qwen.ai/qwenchat",
+    "assetUrl": "https://img.alicdn.com/imgextra/i4/O1CN01OXv3EM1FN8t9W4P79_!!6000000000474-2-tps-80-80.png",
+    "downloadedAt": "2026-10-13",
+    "bytes": 1658,
+    "dimensions": [80, 80],
+    "sha256": "cd9390bc4209c319121d111f3a1f535b3c7dd909b8f860d41acc9744138d58df"
+  },
+  {
+    "id": "kimi",
+    "file": "kimi.png",
+    "sourcePage": "https://www.kimi.com/",
+    "assetUrl": "https://www.kimi.com/pwa-192.png",
+    "downloadedAt": "2026-10-13",
+    "bytes": 21645,
+    "dimensions": [192, 192],
+    "sha256": "6c14f9c3062e953b3ed57ae3e19db931c1c1bba38d4d8d55550544f31d55e469"
+  },
+  {
+    "id": "perplexity",
+    "file": "perplexity.svg",
+    "sourcePage": "https://www.perplexity.ai/",
+    "assetUrl": "https://www.perplexity.ai/favicon.svg",
+    "downloadedAt": "2026-10-13",
+    "bytes": 2438,
+    "dimensions": "0 0 270.000000 270.000000",
+    "sha256": "00180a688c194d684a69b247769cdf24a7720712256dbe0f334f97e8a15821e4"
+  },
+  {
+    "id": "grok",
+    "file": "grok.png",
+    "sourcePage": "https://grok.com/",
+    "assetUrl": "https://grok.com/images/android-chrome-512x512.png",
+    "downloadedAt": "2026-10-13",
+    "bytes": 8332,
+    "dimensions": [512, 512],
+    "sha256": "3a462c3c2524733c173bb05c431de737812f8219db8fa115b0025d12a347e086"
+  },
+  {
+    "id": "copilot",
+    "file": "copilot.svg",
+    "sourcePage": "https://copilot.microsoft.com/",
+    "assetUrl": "https://copilot.microsoft.com/static/cmc/favicon.svg",
+    "downloadedAt": "2026-10-13",
+    "bytes": 3436,
+    "dimensions": null,
+    "sha256": "c5b0ad0fc0c6fd9c49131a972635e1aba4e65a0d0385c01d5be8735921d7ef8b"
+  },
+  {
+    "id": "mistral",
+    "file": "mistral.svg",
+    "sourcePage": "https://mistral.ai/",
+    "assetUrl": "https://mistral.ai/",
+    "selection": "官网页头 data-mobile-logo-icon 内原始 SVG，未改路径或颜色",
+    "downloadedAt": "2026-10-13",
+    "bytes": 514,
+    "dimensions": "0 0 21 15",
+    "sha256": "fcc1e2b4b630bf7eab2c12b5228d8e788f8394bba7db3cfcb2bb3d8d7cba9986"
+  },
+  {
+    "id": "openai",
+    "file": "openai.png",
+    "sourcePage": "https://developers.openai.com/codex/",
+    "assetUrl": "https://developers.openai.com/favicon.png",
+    "downloadedAt": "2026-10-13",
+    "bytes": 1841,
+    "dimensions": [48, 48],
+    "sha256": "8d5575ee667ff715cd3e3074d5296edc68d5aadd89720d203e13131b68b22a04"
+  },
+  {
+    "id": "claude-code",
+    "file": "claude-code.png",
+    "sourcePage": "https://code.claude.com/docs/en/overview",
+    "assetUrl": "https://code.claude.com/docs/_mintlify/favicons/claude-code/pLsy-mRpNksna2sx/_generated/favicon/android-chrome-192x192.png",
+    "downloadedAt": "2026-10-13",
+    "bytes": 18001,
+    "dimensions": [192, 192],
+    "sha256": "d4e5e8e9990ac52f147a74ae80b9e69cdc612264b84a76cdb5c43b53b73a1707"
+  }
+]

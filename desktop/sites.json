@@ -1,0 +1,13 @@
+[
+  { "id": "chatgpt", "name": "ChatGPT", "url": "https://chatgpt.com/", "color": "#188574", "mark": "G" },
+  { "id": "claude", "name": "Claude", "url": "https://claude.ai/", "color": "#b66c4b", "mark": "C" },
+  { "id": "gemini", "name": "Gemini", "url": "https://gemini.google.com/app", "color": "#4675d7", "mark": "✦" },
+  { "id": "deepseek", "name": "DeepSeek", "url": "https://chat.deepseek.com/", "color": "#4167eb", "mark": "D" },
+  { "id": "doubao", "name": "豆包", "url": "https://www.doubao.com/chat/", "color": "#687fb7", "mark": "豆" },
+  { "id": "qwen", "name": "千问", "url": "https://qwen.ai/qwenchat", "color": "#7864c9", "mark": "千" },
+  { "id": "kimi", "name": "Kimi", "url": "https://www.kimi.com/", "color": "#313b4d", "mark": "K" },
+  { "id": "perplexity", "name": "Perplexity", "url": "https://www.perplexity.ai/", "color": "#328b92", "mark": "P" },
+  { "id": "grok", "name": "Grok", "url": "https://grok.com/", "color": "#252c34", "mark": "X" },
+  { "id": "copilot", "name": "Copilot", "url": "https://copilot.microsoft.com/", "color": "#576ed9", "mark": "C" },
+  { "id": "mistral", "name": "Mistral", "url": "https://chat.mistral.ai/", "color": "#cc742c", "mark": "M" }
+]

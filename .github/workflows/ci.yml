@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+    steps:
+      - name: 获取源码
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: 使用 Node.js 24.15.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24.15.0'
+          package-manager-cache: false
+      - name: 启用项目指定的 Yarn
+        run: corepack enable
+      - name: 按锁文件安装依赖
+        run: corepack yarn install --immutable
+      - name: 运行桌面逻辑测试
+        run: corepack yarn test:desktop
+      - name: 构建浏览器扩展
+        run: corepack yarn build
+      - name: 构建桌面前端
+        run: corepack yarn build:desktop
