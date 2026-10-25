@@ -3422,7 +3422,7 @@ __metadata:
     eventsource-parser: "npm:^1.1.1"
     framer-motion: "npm:^10.16.16"
     fuse.js: "npm:^7.0.0"
-    github-markdown-css: "npm:^5.5.0"
+    github-markdown-css: "npm:^5.9.0"
     gpt3-tokenizer: "npm:^1.1.5"
     highlight.js: "npm:^11.9.0"
     humanize-duration: "npm:^3.31.0"
@@ -4387,10 +4387,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"github-markdown-css@npm:^5.5.0":
-  version: 5.5.0
-  resolution: "github-markdown-css@npm:5.5.0"
-  checksum: 4496529d1a386a30923bab38d21ed0a7c18867dde47d888f6780e77b3cd7d9ac3ea98398e2adc73159b351e5c62ee42adeb9bd34ede3e960df47058ee8c1cd22
+"github-markdown-css@npm:^5.9.0":
+  version: 5.9.0
+  resolution: "github-markdown-css@npm:5.9.0"
+  checksum: 406f3a95bc8909d970b04e657083fbbc548c7e13c53e85c9fe46cbdc070d530b4b42b5a48363dd3775330b30fb88330df5854c62af8dd93ed5818be845c36e19
   languageName: node
   linkType: hard
 
