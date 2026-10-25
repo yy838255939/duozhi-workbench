@@ -1,204 +1,118 @@
-<p align="center">
-    <img src="./src/assets/icon.png" width="150">
-</p>
+# 多智工作台 · Duozhi Workbench
 
-<h1 align="center">ChatHub</h1>
+[English](README.md) | **简体中文**
 
-<div align="center">
+基于 [ChatHub](https://github.com/chathub-dev/chathub) 公开源码制作的中文本地工作台，提供官网桌面版并保留浏览器扩展。
 
-### ChatHub 是款全能聊天机器人客户端
+当前版本：0.1.0（首次公开源码版本）。桌面版提供真实官网同屏、统一输入、AI 群聊及有限顺序接力；原浏览器扩展保留提示词库、历史记录和数据备份。
 
-[![作者][作者-image]][作者-url]
-[![许可证][许可证-image]][许可证-url]
-[![发布][发布-image]][发布-url]
-[![最后提交][最后提交-image]][最后提交-url]
+公开仓库：[yy838255939/duozhi-workbench](https://github.com/yy838255939/duozhi-workbench)。[更新记录](CHANGELOG.md) · [贡献指南](CONTRIBUTING.md) · [安全反馈](SECURITY.md) · [来源声明](NOTICE.md)。
 
-[English](README.md) &nbsp;&nbsp;|&nbsp;&nbsp; [Indonesia](README_IN.md) &nbsp;&nbsp;|&nbsp;&nbsp; 简体中文 &nbsp;&nbsp;|&nbsp;&nbsp; [繁體中文](README_ZH-TW.md) &nbsp;&nbsp;|&nbsp;&nbsp; [日本語](README_JA.md)
+桌面版目前提供 macOS 源码运行与打包方式，已在 Apple Silicon Mac 上验证。Windows / Linux 的桌面安装和 Intel Mac 打包尚未实测；浏览器扩展的旧模型接口也未全面验证。各 AI 仍使用自己的官网账号、订阅和额度。
 
-##
+## 官网桌面版
 
-### 安装
+按新的使用方式增加了 Mac 桌面版：每个面板直接加载真实 AI 官网，可以独立登录、聊天、上传文件和查看官网历史记录。支持 1、2、3、4、6 个窗口，网址栏、返回、前进、刷新、切换 AI 和在浏览器打开。
 
-<a href="https://chrome.google.com/webstore/detail/chathub-all-in-one-chatbo/iaakpnchhognanibcahlpcplchdfmgma?utm_source=website"><img src="https://user-images.githubusercontent.com/64502893/231991498-8df6dd63-727c-41d0-916f-c90c15127de3.png" width="200" alt="获取 Chromium 版 ChatHub"></a>&nbsp;&nbsp;
-<a href="https://microsoftedge.microsoft.com/addons/detail/chathub-allinone-chat/kdlmggoacmfoombiokflpeompajfljga"><img src="https://user-images.githubusercontent.com/64502893/231991158-1b54f831-2fdc-43b6-bf9a-f894000e5aa8.png" width="160" alt="获取 Microsoft Edge 版 ChatHub"></a>
+左侧 AI 官网可以上下拖拽排序，顺序会自动保存在本机。也可以聚焦模型按钮，按住 Alt 键配合上下方向键调整顺序。
 
-##
+点击左侧菜单顶部的箭头，可以收起或展开菜单。收起后保留 AI 图标，鼠标悬停可以查看名称；收起状态会保存在本机。
 
-[截图](#-截图) &nbsp;&nbsp;|&nbsp;&nbsp; [特点](#-特点) &nbsp;&nbsp;|&nbsp;&nbsp; [支持的聊天机器人](#-支持的聊天机器人) &nbsp;&nbsp;|&nbsp;&nbsp; [手动安装](#-手动安装) &nbsp;&nbsp;|&nbsp;&nbsp; [从源代码构建](#-从源代码构建) &nbsp;&nbsp;|&nbsp;&nbsp; [更新日志](#-更新日志)
+菜单、官网窗口及群聊成员和回复头像使用本地保存的官方 Logo，保持原色和比例。素材及官方来源见 `src/assets/official-ai/README.md`。
 
-[作者-image]: https://img.shields.io/badge/author-wong2-blue.svg
-[作者-url]: https://github.com/wong2
-[许可证-image]: https://img.shields.io/github/license/chathub-dev/chathub?color=blue
-[许可证-url]: https://github.com/chathub-dev/chathub/blob/main/LICENSE
-[发布-image]: https://img.shields.io/github/v/release/chathub-dev/chathub?color=blue
-[发布-url]: https://github.com/chathub-dev/chathub/releases/latest
-[最后提交-image]: https://img.shields.io/github/last-commit/chathub-dev/chathub?label=last%20commit
-[最后提交-url]: https://github.com/chathub-dev/chathub/commits
+桌面版使用 Electron 的 WebContentsView，各官网是独立的浏览器页面。保留网站安全策略，不修改官网的防嵌入响应头。官网账号与聊天数据由平台管理，桌面版登录状态单独保存，不从 Chrome 自动导入。
 
-</div>
+准备 Node.js **24.15.0**（见 `.nvmrc`）及 Corepack，Yarn 版本由 `package.json` 锁定为 **4.0.1**。在 macOS 的项目目录打包：
 
-##
+```sh
+corepack yarn install --immutable
+corepack yarn package:desktop
+```
 
-## 📷 截图
+成功标志：`release/多智工作台-darwin-arm64/多智工作台.app` 生成，打开后显示官网窗口。Intel Mac 的目录名为 `多智工作台-darwin-x64`。
 
-![截图](screenshots/extension.png?raw=true)
+桌面版下方的统一输入框支持把同一段话发送给当前可见的 AI 窗口，隐藏窗口不会收到。原 Chrome 版的接口群发功能仍保留。
 
-![截图 (暗黑模式)](screenshots/dark.png?raw=true)
+使用统一发送：
 
-## ✨ 特点
+1. 选择窗口数量和各窗口的 AI，先在需要使用的官网里登录。
+2. 在下方“统一输入”中写一段话。按 Shift + Enter 可以换行。
+3. 点击“发送到所有窗口”，或按 Enter 发送，然后在各 AI 窗口右上角查看发送状态。状态位于“在浏览器打开”图标左侧，鼠标悬停可以查看详细原因。
 
-- 🤖 在一个应用中使用不同的聊天机器人，目前支持 ChatGPT、新的 Bing Chat、Google Bard、Claude 以及包括 Alpaca、Vicuna、ChatGLM 等在内的 10 多个开源模型
-- 💬 同时与多个聊天机器人进行对话，方便比较它们的回答
-- 🚀 支持 ChatGPT API 和 GPT-4 浏览
-- 🔍 快捷方式，可在浏览器的任何位置快速激活应用
-- 🎨 支持 Markdown 和代码高亮显示
-- 📚 自定义提示和社区提示的提示库
-- 💾 本地保存对话历史
-- 📥 导出和导入所有数据
-- 🔗 将对话转为 Markdown 并分享
-- 🌙 暗黑模式
+成功标志：对应官网聊天中出现这段话，窗口右上角显示“已发送”。只有所有目标都明确发送成功，统一输入框才会清空。部分成功时，输入内容会保留，“重试”仅发送到明确未成功的窗口；结果需要确认的窗口不会自动重试，请先查看官网，避免重复提交。
 
-## 🤖 支持的聊天机器人
+未登录、正在回复、官网已有草稿或暂不支持的窗口不会直接提交，并会显示原因。也可以使用“复制文本”手动粘贴。自动发送依赖各官网的输入框，网站更新可能影响适配；官网安全验证和账号限额仍由平台决定。首次安装、构建或模拟页面验证不等于所有真实账号和平台聊天都已验证。
 
-* ChatGPT（通过 Web 应用/API/Azure/Poe）
-* Bing Chat
-* Google Bard
-* Claude（通过 Poe）
-* iFlytek Spark
-* ChatGLM
-* Alpaca
-* Vicuna
-* Koala
-* Dolly
-* LLaMA
-* StableLM
-* OpenAssistant
-* ChatRWKV
-* ...
+2026-10-13 在已安装桌面版中实测：ChatGPT、Gemini、DeepSeek、豆包和 Grok 收到同一段群发文本并回复。Kimi 官网因服务排队拒绝本次提交，工作台正确显示“未发送”。Claude、千问、Perplexity 已添加输入适配，但未在真实账号上验证；Copilot 和 Mistral 暂需在官网单独发送。
 
-## 🔧 手动安装
+官网地址配置在 `desktop/sites.json`。界面代码在 `src/app/websites`，原生窗口代码在 `desktop/main.cjs`。运行 `corepack yarn test:desktop` 检查导航地址、窗口边界及官网输入适配的验证逻辑。
 
-- 从 [Releases](https://github.com/chathub-dev/chathub/releases) 下载 chathub.zip
-- 解压文件
-- 在 Chrome/Edge 中进入扩展页面 (chrome://extensions 或 edge://extensions)
-- 启用开发者模式
-- 将解压后的文件夹拖到页面上的任何位置进行导入（导入后不要删除文件夹）
+## AI 群聊与协作（桌面版）
 
-## 🔨 从源代码构建
+在同一页集中查看多个 AI 的回复，支持点名和有限的顺序接力。每个群的官网会话独立保存；同一平台共享桌面版登录状态，已有登录无需因新建群而重新登录。群成员会收到本轮要求和最近的群聊记录。
 
-- 克隆源代码
-- 运行 `yarn install`
-- 运行 `yarn build`
-- 按照 _手动安装_ 中的步骤将 `dist` _文件夹加载到浏览器中_
+使用步骤：
 
-## 📜 更新日志
+1. 点击左侧“AI 群聊”，再点击“新建群聊”，填写群名并选择成员。每个群至少一位成员，最多 6 位官网成员和 2 位本地执行助手；也可以创建只有执行助手的群。
+2. 官网成员可点击名称旁的打开图标，查看官网会话。只有尚未登录或登录失效时才需登录。添加 Codex 或 Claude Code 时，点击“选择文件夹”指定本次任务的工作目录；使用本机已有工具及其登录状态，未安装或登录不可用时会报告失败。
+3. 写下任务并勾选接收成员，或用 `@ChatGPT`、`@Claude Code` 等完整名称点名。`@所有人` 发给全群，也支持 `@all`、`@everyone`。Enter 发送，Shift + Enter 换行；消息和回复按成员名称记录在当前群中。
+4. “一起回答”让官网成员同时回答，本地执行助手按队列执行，避免同时改动工作目录。“依次接力”至少选择两位成员，可以调整次序：第一位出方案，中间成员评审，最后一位汇总；每轮只执行一次名单，前一位未完成时暂停后续接力。
 
-### v1.22.0
+成功标志：当前群出现本轮用户消息，并逐步显示各成员的真实回复或失败原因。执行任务的成果还需到所选文件夹中检查；界面状态和安装成功不能替代成果验收。
 
-- 支持 Claude API
+运行中可以点击“停止调度”。停止后不会自动重发；官网可能继续生成，请打开原网页检查。失败、排队和无法确认的结果均不当作成功，也不会自动重试。每个群的草稿独立保留；归档隐藏群聊但保留已有记录。
 
-### v1.21.0
+官网群聊依赖网页输入框和回复区域，网站改版、登录验证、配额或排队可能影响兼容性。Copilot 和 Mistral 暂不支持群聊回复采集，仍可在官网同屏中手动使用。本轮群聊未实现 API 接入或 API Key 配置。已有官网群发实测记录见上文；群聊回复采集和执行工具的验证须分别记录，不能据此声称所有真实平台都已稳定验证。
 
-- 添加更多开源模型
+2026-10-13 群聊实测：ChatGPT、Gemini、DeepSeek、豆包、Grok、Kimi 的真实回复已采集到统一群聊，DeepSeek → 豆包的有限接力已完成。ChatGPT 新群首次发送、已有群续聊和回复回填已复测通过；Gemini 首轮等待后人为停止，复测已返回官网回复，但本次回答为“超出设计用途”，任务内容仍需用户验收。本机检测到 Codex 0.135.0 和 Claude Code 2.1.143；Codex 在隔离目录实际执行 90 秒未完成后停止，Claude Code 登录失败，尚未验证这两项工具的任务成果。
 
-### v1.20.0
+## 本地开发
 
-- 从 Chrome 侧边栏访问
+需要 Node.js **24.15.0** 和 Corepack。首次获取源码并构建浏览器扩展：
 
-### v1.19.0
+```sh
+git clone https://github.com/yy838255939/duozhi-workbench.git
+cd duozhi-workbench
+corepack yarn install --immutable
+corepack yarn build
+```
 
-- 快速访问提示
+成功标志：生成 `dist/manifest.json`，构建命令退出码为 0。
 
-### v1.18.0
+桌面界面开发与检查：
 
-- 支持 Alpaca、Vicuna 和 ChatGLM
+```sh
+corepack yarn build:desktop
+corepack yarn start:desktop
+```
 
-### v1.17.0
+成功标志：打开“多智工作台”原生窗口；群聊入口与官网同屏入口可切换。自动检查执行 `corepack yarn test:desktop`，这组测试使用模拟页面和本地替身，不需要登录 AI 账号。
 
-- 支持 GPT-4 浏览模型
+GitHub CI 会运行测试及扩展、桌面前端构建；macOS 应用打包仍需在 Mac 上执行 `corepack yarn package:desktop`。
 
-### v1.16.5
+## 安装到 Chrome
 
-- 增加 Azure OpenAI 服务支持
+1. 打开 `chrome://extensions/`。
+2. 开启右上角“开发者模式”。
+3. 点击“加载未打包的扩展程序”（部分版本显示“加载已解压的扩展程序”），选择本项目的 `dist` 文件夹。
+4. 点击扩展图标，打开“多智工作台”。
 
-### v1.16.0
+成功标志：扩展列表出现“多智工作台 0.1.0”，打开后显示中文的“多模型同屏”页面。
 
-- 增加自定义主题设置
+## 修改后更新
 
-### v1.15.0
+重新执行 `corepack yarn build`，在 Chrome 扩展管理页点击本扩展的刷新按钮，再刷新工作台标签页。
 
-- 增加讯飞 Spark 机器人
+成功标志：工作台显示修改后的界面。`dist` 是已安装扩展的来源文件夹，请保留它。
 
-### v1.14.0
+## 当前范围
 
-- 为高级用户在全能模式中支持更多机器人
+本版本以公开源码为基础，保留原有技术栈。中文界面、布局和本地数据功能可以使用。模型适配器来自较旧的公开源码，部分平台已更换域名、接口或登录方式，尚未逐一验证真实账号聊天。初次界面安装成功不等于所有旧模型接口都可用。
 
-### v1.12.0
+本地界面不需要原项目的购买授权，不发送原项目的安装来源和页面使用统计。模型账号、订阅、API 费用与限额仍由各平台官网管理。旧平台适配器中仍有原项目的接口依赖，后续按实际使用的平台进行替换。浏览器扩展中依赖固定认证串的旧 Grok / Twitter 接口已停用，使用时会显示迁移到桌面官网版的提示。
 
-- 增加高级许可证
+## 来源与许可
 
-### v1.11.0
+上游：https://github.com/chathub-dev/chathub
 
-- 支持 Claude (via Poe)
-
-### v1.10.0
-
-- 新增了快捷键 Command + K
-
-### v1.9.4
-
-- 新增了暗黑模式
-
-### v1.9.3
-
-- 支持使用 katex 插件输入数学公式
-- 可以将社区提示保存到本地
-
-### v1.9.2
-
-- 可以删除历史消息
-
-### v1.9.0
-
-- 可以将聊天记录分享为 Markdown 或通过 sharegpt.com 分享
-
-### v1.8.0
-
-- 可以导入/导出所有数据
-- 可以编辑本地提示
-- 可以切换聊天机器人进行比较
-
-### v1.7.0
-
-- 新增了对话历史记录
-
-### v1.6.0
-
-- 增加了对 Google Bard 的支持
-
-### v1.5.4
-
-- 在 ChatGPT API 模式下支持 GPT-4 模型
-
-### v1.5.1
-
-- 增加了国际化设置
-
-### v1.5.0
-
-- 在 ChatGPT Webapp 模式下支持 GPT-4 模型
-
-### v1.4.0
-
-- 新增了 Prompt 库
-
-### v1.3.0
-
-- 增加了复制代码按钮
-- 在全合一模式和独立模式之间同步聊天状态
-- 允许在生成答案时输入
-
-### v1.2.0
-
-- 支持复制消息文本
-- 改进了设置页面表单元素的样式
+保留原作者版权说明和 `LICENSE`。本项目代码沿用 GPL-3.0-only；上游原始说明保存在 `README_UPSTREAM.md`，修改说明见 `NOTICE.md`。AI 品牌 Logo 与依赖库保留各自权利和许可。

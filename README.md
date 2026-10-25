@@ -1,74 +1,76 @@
-# 多智工作台 · Duozhi Workbench
+# Duozhi Workbench（多智工作台）
 
-基于 [ChatHub](https://github.com/chathub-dev/chathub) 公开源码制作的中文本地工作台，提供官网桌面版并保留浏览器扩展。
+**English** | [简体中文](README_ZH-CN.md)
 
-当前版本：0.1.0（首次公开源码版本）。桌面版提供真实官网同屏、统一输入、AI 群聊及有限顺序接力；原浏览器扩展保留提示词库、历史记录和数据备份。
+A Chinese-first local workspace based on the open-source [ChatHub](https://github.com/chathub-dev/chathub) project. It provides an Electron desktop app for official AI websites and retains the original browser extension.
 
-Duozhi Workbench is a Chinese-first, local desktop workspace for official AI websites, shared prompts, and bounded group collaboration. It is a GPL-3.0 fork of ChatHub.
+Current version: **0.1.0**, the first public source release. The desktop app supports multiple official websites in one window, shared prompts, AI group chats, and bounded sequential collaboration. The browser extension retains its prompt library, local history, and data backup features.
 
-公开仓库：[yy838255939/duozhi-workbench](https://github.com/yy838255939/duozhi-workbench)。[更新记录](CHANGELOG.md) · [贡献指南](CONTRIBUTING.md) · [安全反馈](SECURITY.md) · [来源声明](NOTICE.md)。
+The application interface currently uses Simplified Chinese. English is the default language of this repository's README; use the link above to switch to the Chinese documentation.
 
-桌面版目前提供 macOS 源码运行与打包方式，已在 Apple Silicon Mac 上验证。Windows / Linux 的桌面安装和 Intel Mac 打包尚未实测；浏览器扩展的旧模型接口也未全面验证。各 AI 仍使用自己的官网账号、订阅和额度。
+Repository: [yy838255939/duozhi-workbench](https://github.com/yy838255939/duozhi-workbench). [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Attribution](NOTICE.md).
 
-## 官网桌面版
+The desktop app can currently be run and packaged from source on macOS and has been checked on an Apple Silicon Mac. Desktop installation on Windows and Linux, and packaging on Intel Macs, have not been tested. The extension's legacy model integrations have not been fully verified either. Each AI continues to use its own website account, subscription, and usage limits.
 
-按新的使用方式增加了 Mac 桌面版：每个面板直接加载真实 AI 官网，可以独立登录、聊天、上传文件和查看官网历史记录。支持 1、2、3、4、6 个窗口，网址栏、返回、前进、刷新、切换 AI 和在浏览器打开。
+## Official website desktop app
 
-左侧 AI 官网可以上下拖拽排序，顺序会自动保存在本机。也可以聚焦模型按钮，按住 Alt 键配合上下方向键调整顺序。
+Each panel loads a real AI website, where you can sign in, chat, upload files, and view that platform's conversation history. Choose 1, 2, 3, 4, or 6 panels. Each panel provides an address bar, back, forward, reload, AI selection, and an option to open its page in a browser.
 
-点击左侧菜单顶部的箭头，可以收起或展开菜单。收起后保留 AI 图标，鼠标悬停可以查看名称；收起状态会保存在本机。
+Drag AI entries up or down in the sidebar to reorder them; the order is saved locally. For keyboard reordering, focus an AI button and press Alt + Up or Alt + Down.
 
-菜单、官网窗口及群聊成员和回复头像使用本地保存的官方 Logo，保持原色和比例。素材及官方来源见 `src/assets/official-ai/README.md`。
+Use the arrow at the top of the sidebar to collapse or expand it. The collapsed sidebar keeps the AI icons, with names available on hover. Its collapsed state is saved locally.
 
-桌面版使用 Electron 的 WebContentsView，各官网是独立的浏览器页面。保留网站安全策略，不修改官网的防嵌入响应头。官网账号与聊天数据由平台管理，桌面版登录状态单独保存，不从 Chrome 自动导入。
+The sidebar, website panels, group members, and reply avatars use locally bundled official logos with their original colors and proportions. See the [asset sources and notices](src/assets/official-ai/README.md).
 
-准备 Node.js **24.15.0**（见 `.nvmrc`）及 Corepack，Yarn 版本由 `package.json` 锁定为 **4.0.1**。在 macOS 的项目目录打包：
+The desktop app uses Electron's `WebContentsView`. Websites run as separate browser pages with their security policies preserved; the app does not remove anti-embedding response headers. Accounts and website conversations remain managed by each platform. Desktop sign-in sessions are stored separately and are not imported automatically from Chrome.
+
+Use Node.js **24.15.0** (see `.nvmrc`) and Corepack. `package.json` pins Yarn to **4.0.1**. To package the app from the project directory on macOS:
 
 ```sh
 corepack yarn install --immutable
 corepack yarn package:desktop
 ```
 
-成功标志：`release/多智工作台-darwin-arm64/多智工作台.app` 生成，打开后显示官网窗口。Intel Mac 的目录名为 `多智工作台-darwin-x64`。
+**Success check:** `release/多智工作台-darwin-arm64/多智工作台.app` is created and opens the website panels. The output directory on an Intel Mac is named `多智工作台-darwin-x64`; that architecture has not been tested.
 
-桌面版下方的统一输入框支持把同一段话发送给当前可见的 AI 窗口，隐藏窗口不会收到。原 Chrome 版的接口群发功能仍保留。
+The shared input at the bottom of the desktop app sends the same text to the currently visible AI panels. Hidden panels do not receive it. The original Chrome extension's API-based broadcast feature is also retained.
 
-使用统一发送：
+To send a shared prompt:
 
-1. 选择窗口数量和各窗口的 AI，先在需要使用的官网里登录。
-2. 在下方“统一输入”中写一段话。按 Shift + Enter 可以换行。
-3. 点击“发送到所有窗口”，或按 Enter 发送，然后在各 AI 窗口右上角查看发送状态。状态位于“在浏览器打开”图标左侧，鼠标悬停可以查看详细原因。
+1. Choose the panel count and each panel's AI, then sign in to the websites you want to use.
+2. Enter a prompt in **统一输入** (shared input). Press Shift + Enter for a new line.
+3. Click **发送到所有窗口** (send to all panels), or press Enter. Check the status at the top right of each AI panel, to the left of the **在浏览器打开** (open in browser) icon. Hover over a status for details.
 
-成功标志：对应官网聊天中出现这段话，窗口右上角显示“已发送”。只有所有目标都明确发送成功，统一输入框才会清空。部分成功时，输入内容会保留，“重试”仅发送到明确未成功的窗口；结果需要确认的窗口不会自动重试，请先查看官网，避免重复提交。
+**Success check:** the prompt appears in the corresponding website conversation and the panel shows **已发送** (sent). The shared input clears only when all targets are confirmed sent. After a partial success, the input is retained. **重试** (retry) targets only panels confirmed not to have sent the prompt. Unconfirmed results are not retried automatically; check the website first to avoid duplicate submissions.
 
-未登录、正在回复、官网已有草稿或暂不支持的窗口不会直接提交，并会显示原因。也可以使用“复制文本”手动粘贴。自动发送依赖各官网的输入框，网站更新可能影响适配；官网安全验证和账号限额仍由平台决定。首次安装、构建或模拟页面验证不等于所有真实账号和平台聊天都已验证。
+A panel will not submit automatically if it is signed out, still generating a reply, contains an existing draft, or is unsupported. The app displays the reason. You can also use **复制文本** (copy text) and paste manually. Automatic sending depends on each website's composer, so website changes can affect compatibility. Platform verification and account limits still apply. A successful build, installation, or simulated-page check does not establish that every real account and platform works.
 
-2026-10-13 在已安装桌面版中实测：ChatGPT、Gemini、DeepSeek、豆包和 Grok 收到同一段群发文本并回复。Kimi 官网因服务排队拒绝本次提交，工作台正确显示“未发送”。Claude、千问、Perplexity 已添加输入适配，但未在真实账号上验证；Copilot 和 Mistral 暂需在官网单独发送。
+**Live website check on 2026-10-13:** in the installed desktop app, ChatGPT, Gemini, DeepSeek, Doubao (豆包), and Grok received the same broadcast prompt and replied. Kimi rejected that submission because of service queuing, and the app correctly showed **未发送** (not sent). Composer adapters exist for Claude, Qwen (千问), and Perplexity, but were not checked with real accounts. Copilot and Mistral currently require sending directly on their websites.
 
-官网地址配置在 `desktop/sites.json`。界面代码在 `src/app/websites`，原生窗口代码在 `desktop/main.cjs`。运行 `corepack yarn test:desktop` 检查导航地址、窗口边界及官网输入适配的验证逻辑。
+Website addresses are configured in `desktop/sites.json`. The desktop UI is in `src/app/websites`, and native window code is in `desktop/main.cjs`. Run `corepack yarn test:desktop` to check navigation validation, panel bounds, and website composer logic.
 
-## AI 群聊与协作（桌面版）
+## AI group chats and collaboration
 
-在同一页集中查看多个 AI 的回复，支持点名和有限的顺序接力。每个群的官网会话独立保存；同一平台共享桌面版登录状态，已有登录无需因新建群而重新登录。群成员会收到本轮要求和最近的群聊记录。
+The desktop group-chat view collects multiple AI replies on one page. It supports mentions and bounded sequential collaboration. Each group saves its own website conversations, while groups using the same platform share its desktop sign-in session. Creating a new group does not require another sign-in when that session is still valid. Members receive the current request and recent group history.
 
-使用步骤：
+To use a group chat:
 
-1. 点击左侧“AI 群聊”，再点击“新建群聊”，填写群名并选择成员。每个群至少一位成员，最多 6 位官网成员和 2 位本地执行助手；也可以创建只有执行助手的群。
-2. 官网成员可点击名称旁的打开图标，查看官网会话。只有尚未登录或登录失效时才需登录。添加 Codex 或 Claude Code 时，点击“选择文件夹”指定本次任务的工作目录；使用本机已有工具及其登录状态，未安装或登录不可用时会报告失败。
-3. 写下任务并勾选接收成员，或用 `@ChatGPT`、`@Claude Code` 等完整名称点名。`@所有人` 发给全群，也支持 `@all`、`@everyone`。Enter 发送，Shift + Enter 换行；消息和回复按成员名称记录在当前群中。
-4. “一起回答”让官网成员同时回答，本地执行助手按队列执行，避免同时改动工作目录。“依次接力”至少选择两位成员，可以调整次序：第一位出方案，中间成员评审，最后一位汇总；每轮只执行一次名单，前一位未完成时暂停后续接力。
+1. Click **AI 群聊** (AI group chat), then **新建群聊** (new group chat). Enter a name and select members. A group requires at least one member and supports up to 6 website members and 2 local execution assistants. Groups containing only local assistants are also supported.
+2. Use the open icon beside a website member to inspect its conversation. Sign in only if the platform is signed out or its session has expired. When adding Codex or Claude Code, click **选择文件夹** (choose folder) to select the working directory. The app uses the locally installed tool and its own sign-in state, and reports failures if the tool or login is unavailable.
+3. Enter a task and select its recipients, or mention members by their full names, such as `@ChatGPT` or `@Claude Code`. `@所有人`, `@all`, and `@everyone` address the whole group. Enter sends; Shift + Enter adds a new line. Messages and replies are recorded under each member's name in the current group.
+4. **一起回答** (answer together) runs website members concurrently and local execution assistants in a queue to avoid simultaneous writes to the working directory. **依次接力** (sequential relay) requires at least two members and lets you adjust their order: the first proposes a plan, intermediate members review it, and the last summarizes. Each round traverses the selected list once. If a member does not complete its step, the remaining relay pauses.
 
-成功标志：当前群出现本轮用户消息，并逐步显示各成员的真实回复或失败原因。执行任务的成果还需到所选文件夹中检查；界面状态和安装成功不能替代成果验收。
+**Success check:** the current group shows your request, followed by each member's actual response or failure reason. For execution tasks, also inspect the output in the selected folder. Interface status and a successful installation do not replace checking the task's results.
 
-运行中可以点击“停止调度”。停止后不会自动重发；官网可能继续生成，请打开原网页检查。失败、排队和无法确认的结果均不当作成功，也不会自动重试。每个群的草稿独立保留；归档隐藏群聊但保留已有记录。
+Click **停止调度** (stop scheduling) during a run to stop further work. Requests are not resent automatically after stopping. A website may continue generating; open the original page to check. Failures, queued requests, and unconfirmed results are not treated as success or retried automatically. Each group keeps its own draft. Archiving hides a group while retaining its history.
 
-官网群聊依赖网页输入框和回复区域，网站改版、登录验证、配额或排队可能影响兼容性。Copilot 和 Mistral 暂不支持群聊回复采集，仍可在官网同屏中手动使用。本轮群聊未实现 API 接入或 API Key 配置。已有官网群发实测记录见上文；群聊回复采集和执行工具的验证须分别记录，不能据此声称所有真实平台都已稳定验证。
+Website group chats depend on platform composers and response elements. Website changes, sign-in verification, quotas, and queuing may affect compatibility. Copilot and Mistral do not yet support group response collection; they remain available for manual use in the website-panel view. The desktop group-chat feature does not currently provide an API integration or API-key configuration. Website broadcasts, group response collection, and local execution tools have separate verification results; one does not establish that all platforms work reliably.
 
-2026-10-13 群聊实测：ChatGPT、Gemini、DeepSeek、豆包、Grok、Kimi 的真实回复已采集到统一群聊，DeepSeek → 豆包的有限接力已完成。ChatGPT 新群首次发送、已有群续聊和回复回填已复测通过；Gemini 首轮等待后人为停止，复测已返回官网回复，但本次回答为“超出设计用途”，任务内容仍需用户验收。本机检测到 Codex 0.135.0 和 Claude Code 2.1.143；Codex 在隔离目录实际执行 90 秒未完成后停止，Claude Code 登录失败，尚未验证这两项工具的任务成果。
+**Live group-chat check on 2026-10-13:** replies from ChatGPT, Gemini, DeepSeek, Doubao, Grok, and Kimi were collected in the unified conversation, and a DeepSeek → Doubao relay completed. ChatGPT was rechecked for a new group's first submission, continued conversation in an existing group, and reply collection. The first Gemini attempt was stopped while waiting; a later attempt returned a website response saying the request was beyond its intended use. The content of a model's answer still requires review. Codex **0.135.0** and Claude Code **2.1.143** were detected locally. The Codex task in an isolated directory was stopped after 90 seconds without completing, and Claude Code authentication failed. Successful task outputs from those two local tools have not been verified.
 
-## 本地开发
+## Local development
 
-需要 Node.js **24.15.0** 和 Corepack。首次获取源码并构建浏览器扩展：
+Use Node.js **24.15.0** and Corepack. To obtain the source and build the browser extension:
 
 ```sh
 git clone https://github.com/yy838255939/duozhi-workbench.git
@@ -77,42 +79,42 @@ corepack yarn install --immutable
 corepack yarn build
 ```
 
-成功标志：生成 `dist/manifest.json`，构建命令退出码为 0。
+**Success check:** the command exits with code 0 and creates `dist/manifest.json`.
 
-桌面界面开发与检查：
+To build and open the desktop interface:
 
 ```sh
 corepack yarn build:desktop
 corepack yarn start:desktop
 ```
 
-成功标志：打开“多智工作台”原生窗口；群聊入口与官网同屏入口可切换。自动检查执行 `corepack yarn test:desktop`，这组测试使用模拟页面和本地替身，不需要登录 AI 账号。
+**Success check:** the native **多智工作台** window opens, and you can switch between group chat and the website-panel view. Run `corepack yarn test:desktop` for automated checks. These tests use simulated pages and local stand-ins and do not require AI account sign-ins.
 
-GitHub CI 会运行测试及扩展、桌面前端构建；macOS 应用打包仍需在 Mac 上执行 `corepack yarn package:desktop`。
+GitHub CI runs the tests and builds both the extension and desktop frontend. Packaging the macOS application still requires running `corepack yarn package:desktop` on a Mac.
 
-## 安装到 Chrome
+## Install the Chrome extension
 
-1. 打开 `chrome://extensions/`。
-2. 开启右上角“开发者模式”。
-3. 点击“加载未打包的扩展程序”（部分版本显示“加载已解压的扩展程序”），选择本项目的 `dist` 文件夹。
-4. 点击扩展图标，打开“多智工作台”。
+1. Open `chrome://extensions/`.
+2. Enable **Developer mode** in the top-right corner.
+3. Click **Load unpacked** and select this project's `dist` folder.
+4. Click the extension icon to open **多智工作台**.
 
-成功标志：扩展列表出现“多智工作台 0.1.0”，打开后显示中文的“多模型同屏”页面。
+**Success check:** the extension list shows **多智工作台 0.1.0**, and the extension opens the Chinese **多模型同屏** (multiple models in one view) page.
 
-## 修改后更新
+## Update after changes
 
-重新执行 `corepack yarn build`，在 Chrome 扩展管理页点击本扩展的刷新按钮，再刷新工作台标签页。
+Run `corepack yarn build` again, reload the extension on Chrome's extensions page, and refresh the workbench tab.
 
-成功标志：工作台显示修改后的界面。`dist` 是已安装扩展的来源文件夹，请保留它。
+**Success check:** the workbench shows your changes. Keep `dist`, because the installed unpacked extension loads from that directory.
 
-## 当前范围
+## Current scope
 
-本版本以公开源码为基础，保留原有技术栈。中文界面、布局和本地数据功能可以使用。模型适配器来自较旧的公开源码，部分平台已更换域名、接口或登录方式，尚未逐一验证真实账号聊天。初次界面安装成功不等于所有旧模型接口都可用。
+This version retains the original project's technology stack. Its Chinese UI, layout, and local data features are available. The extension's model adapters come from older public source code, and some platforms have changed their domains, APIs, or sign-in flows. Real account conversations have not been checked for every adapter. Opening the app successfully does not establish that all legacy model integrations work.
 
-本地界面不需要原项目的购买授权，不发送原项目的安装来源和页面使用统计。模型账号、订阅、API 费用与限额仍由各平台官网管理。旧平台适配器中仍有原项目的接口依赖，后续按实际使用的平台进行替换。浏览器扩展中依赖固定认证串的旧 Grok / Twitter 接口已停用，使用时会显示迁移到桌面官网版的提示。
+The local interface does not require the original project's purchase authorization and does not send its installation-source or page-usage analytics. Model accounts, subscriptions, API charges, and usage limits remain controlled by each platform. Some legacy adapters still depend on the original project's services and need further updates for the platforms in use. The extension's old Grok / Twitter integration, which depended on a fixed authentication string, has been disabled and displays a message directing users to the desktop website version.
 
-## 来源与许可
+## Source and license
 
-上游：https://github.com/chathub-dev/chathub
+Upstream: [chathub-dev/chathub](https://github.com/chathub-dev/chathub).
 
-保留原作者版权说明和 `LICENSE`。本项目代码沿用 GPL-3.0-only；上游原始说明保存在 `README_UPSTREAM.md`，修改说明见 `NOTICE.md`。AI 品牌 Logo 与依赖库保留各自权利和许可。
+Original attribution and the [LICENSE](LICENSE) are retained. This project's code is licensed under **GPL-3.0-only**. The original upstream README is preserved in [README_UPSTREAM.md](README_UPSTREAM.md), and modifications are described in [NOTICE.md](NOTICE.md). AI brand logos and dependencies retain their respective rights and licenses.
