@@ -836,10 +836,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@epic-web/cachified@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@epic-web/cachified@npm:4.0.0"
-  checksum: 9cda35da59fc46fcaee3f3427efd74654a4d294c5d4035b609a761165896bae4707beef828a12d083651eda67107f20333ad43fcdea7618e35636662d576783a
+"@epic-web/cachified@npm:^5.6.3":
+  version: 5.6.3
+  resolution: "@epic-web/cachified@npm:5.6.3"
+  checksum: 6aa05397f1d4a151ab507fe11fe9636e091fe32023e9e1aaa66c7f0768c24c604053fb609d4194de8f4555954645ac3d1eb8d6d6f244621d1922477de515bc7c
   languageName: node
   linkType: hard
 
@@ -3379,7 +3379,7 @@ __metadata:
   dependencies:
     "@crxjs/vite-plugin": "npm:2.0.0-beta.21"
     "@electron/packager": "npm:20.3.0"
-    "@epic-web/cachified": "npm:^4.0.0"
+    "@epic-web/cachified": "npm:^5.6.3"
     "@floating-ui/react": "npm:^0.26.4"
     "@google/generative-ai": "npm:^0.1.3"
     "@headlessui/react": "npm:^1.7.17"
