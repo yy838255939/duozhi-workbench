@@ -1138,10 +1138,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google/generative-ai@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@google/generative-ai@npm:0.1.3"
-  checksum: ce1e3e4440d31965eae8fcdbb0120c9b47f8503e95b14b361d8b1528cb66f96d940f47ad31eb1baeb7eda72d3394c05bc6fe25de2df8e7bfea1a8e35fa869e40
+"@google/generative-ai@npm:^0.24.1":
+  version: 0.24.1
+  resolution: "@google/generative-ai@npm:0.24.1"
+  checksum: 8da77fc648b04fc2ecef53e75230e2ee67a8fd29a34b6b8874e77a7332b2a1e4b51d44dd9eb604fb063ed8ea46d293aac5b1e2a955ae2435e2582a265f2cb80d
   languageName: node
   linkType: hard
 
@@ -3381,7 +3381,7 @@ __metadata:
     "@electron/packager": "npm:20.3.0"
     "@epic-web/cachified": "npm:^4.0.0"
     "@floating-ui/react": "npm:^0.26.4"
-    "@google/generative-ai": "npm:^0.1.3"
+    "@google/generative-ai": "npm:^0.24.1"
     "@headlessui/react": "npm:^1.7.17"
     "@headlessui/tailwindcss": "npm:^0.2.0"
     "@heroicons/react": "npm:^2.1.1"
