@@ -112,9 +112,3 @@ Run `corepack yarn build` again, reload the extension on Chrome's extensions pag
 This version retains the original project's technology stack. Its Chinese UI, layout, and local data features are available. The extension's model adapters come from older public source code, and some platforms have changed their domains, APIs, or sign-in flows. Real account conversations have not been checked for every adapter. Opening the app successfully does not establish that all legacy model integrations work.
 
 The local interface does not require the original project's purchase authorization and does not send its installation-source or page-usage analytics. Model accounts, subscriptions, API charges, and usage limits remain controlled by each platform. Some legacy adapters still depend on the original project's services and need further updates for the platforms in use. The extension's old Grok / Twitter integration, which depended on a fixed authentication string, has been disabled and displays a message directing users to the desktop website version.
-
-## Source and license
-
-Upstream: [chathub-dev/chathub](https://github.com/chathub-dev/chathub).
-
-Original attribution and the [LICENSE](LICENSE) are retained. This project's code is licensed under **GPL-3.0-only**. The original upstream README is preserved in [README_UPSTREAM.md](README_UPSTREAM.md), and modifications are described in [NOTICE.md](NOTICE.md). AI brand logos and dependencies retain their respective rights and licenses.
