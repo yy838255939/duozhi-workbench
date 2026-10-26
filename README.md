@@ -2,9 +2,9 @@
 
 **English** | [简体中文](README_ZH-CN.md)
 
-A Chinese-first local workspace based on the open-source [ChatHub](https://github.com/chathub-dev/chathub) project. It provides an Electron desktop app for official AI websites and retains the original browser extension.
+Duozhi Workbench is a local multi-AI workspace being developed for users worldwide. Open official AI websites side by side, send a shared prompt, and collect selected AIs' replies in one group conversation.
 
-Current version: **0.1.0**, the first public source release. The desktop app supports multiple official websites in one window, shared prompts, AI group chats, and bounded sequential collaboration. The browser extension retains its prompt library, local history, and data backup features.
+Current version: **0.1.0**, the first public source release. Workbench additions include the Electron desktop app, prompt delivery to visible website panels, group reply collection, and a sequential relay that visits each selected AI once. The retained browser extension provides a prompt library, local history, and data backup features.
 
 The application interface currently uses Simplified Chinese. English is the default language of this repository's README; use the link above to switch to the Chinese documentation.
 
